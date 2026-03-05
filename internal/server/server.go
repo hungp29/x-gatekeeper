@@ -68,8 +68,8 @@ func registerRoutes(r *gin.Engine, wh *word.Handler) {
 	})
 
 	// Word API — proxied from x-word gRPC
-	r.GET("/word/:word", wh.GetWord)
-	r.POST("/words", wh.GetWords)
+	r.GET("/v1/word/:word", wh.GetWord)
+	r.POST("/v1/words", wh.GetWords)
 }
 
 // corsMiddleware sets CORS headers on every response and short-circuits OPTIONS preflight requests.
