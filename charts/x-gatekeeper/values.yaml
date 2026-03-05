@@ -40,7 +40,7 @@ env:
 ingress:
   enabled: true
   className: nginx
-  path: /x-gatekeeper(/|$)(.*)
+  path: /api(/|$)(.*)
   pathType: ImplementationSpecific
   rewriteTarget: /$2
   annotations:
