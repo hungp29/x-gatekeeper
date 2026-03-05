@@ -1,0 +1,12 @@
+.claude
+.cursor
+.vscode
+.claude-plugin
+commands
+skills
+
+# Go
+bin/
+*.exe
+coverage.out
+coverage.html
