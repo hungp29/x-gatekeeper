@@ -11,6 +11,7 @@ import (
 type Config struct {
 	HTTPPort           int
 	CORSAllowedOrigins []string
+	XWordAddr          string // gRPC address of x-word (e.g. "internal:80")
 }
 
 // Load reads configuration from environment. Returns error if required values are missing or invalid.
@@ -24,9 +25,18 @@ func Load() (*Config, error) {
 		return nil, fmt.Errorf("HTTP_PORT must be a valid port (1-65535), got %q", portStr)
 	}
 
+	xwordAddr := os.Getenv("XWORD_ADDR")
+	if xwordAddr == "" {
+		return nil, fmt.Errorf("XWORD_ADDR is required (e.g. \"internal:80\")")
+	}
+
 	allowedOrigins := parseCORSOrigins(os.Getenv("CORS_ALLOWED_ORIGINS"))
 
-	return &Config{HTTPPort: port, CORSAllowedOrigins: allowedOrigins}, nil
+	return &Config{
+		HTTPPort:           port,
+		CORSAllowedOrigins: allowedOrigins,
+		XWordAddr:          xwordAddr,
+	}, nil
 }
 
 // parseCORSOrigins splits a comma-separated origins string into a slice.

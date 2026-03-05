@@ -27,6 +27,8 @@ spec:
           env:
             - name: HTTP_PORT
               value: {{ .Values.env.HTTP_PORT | quote }}
+            - name: XWORD_ADDR
+              value: {{ .Values.env.XWORD_ADDR | quote }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
             httpGet:
