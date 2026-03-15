@@ -14,7 +14,5 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o /xgatekee
 # Runtime stage
 FROM gcr.io/distroless/base-debian12
 COPY --from=builder /xgatekeeper /xgatekeeper
-EXPOSE 8080
-ENV HTTP_PORT=8080
 USER 65534:65534
 ENTRYPOINT ["/xgatekeeper"]

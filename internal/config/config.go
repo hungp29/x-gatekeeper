@@ -16,21 +16,21 @@ type Config struct {
 
 // Load reads configuration from environment. Returns error if required values are missing or invalid.
 func Load() (*Config, error) {
-	portStr := os.Getenv("HTTP_PORT")
+	portStr := os.Getenv("GATEKEEPER_HTTP_PORT")
 	if portStr == "" {
 		portStr = "8080"
 	}
 	port, err := strconv.Atoi(portStr)
 	if err != nil || port <= 0 || port > 65535 {
-		return nil, fmt.Errorf("HTTP_PORT must be a valid port (1-65535), got %q", portStr)
+		return nil, fmt.Errorf("GATEKEEPER_HTTP_PORT must be a valid port (1-65535), got %q", portStr)
 	}
 
-	xwordAddr := os.Getenv("XWORD_ADDR")
+	xwordAddr := os.Getenv("GATEKEEPER_XWORD_ADDR")
 	if xwordAddr == "" {
-		return nil, fmt.Errorf("XWORD_ADDR is required (e.g. \"internal:80\")")
+		return nil, fmt.Errorf("GATEKEEPER_XWORD_ADDR is required (e.g. \"internal:80\")")
 	}
 
-	allowedOrigins := parseCORSOrigins(os.Getenv("CORS_ALLOWED_ORIGINS"))
+	allowedOrigins := parseCORSOrigins(os.Getenv("GATEKEEPER_CORS_ALLOWED_ORIGINS"))
 
 	return &Config{
 		HTTPPort:           port,

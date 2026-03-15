@@ -12,3 +12,6 @@ coverage.out
 coverage.html
 
 .DS_Store
+
+Chart.lock
+charts/**/charts

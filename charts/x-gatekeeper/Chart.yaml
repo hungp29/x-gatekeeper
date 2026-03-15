@@ -7,4 +7,12 @@ appVersion: "0.1.0"
 keywords:
   - x-gatekeeper
   - gin
-maintainers: []
+dependencies:
+  - name: go-application
+    alias: application
+    version: 1.0.0
+    repository: oci://ghcr.io/hungp29/charts
+maintainers:
+  - name: Hung Pham
+    email: dev.hungpham@gmail.com
+    url: https://github.com/hungp29

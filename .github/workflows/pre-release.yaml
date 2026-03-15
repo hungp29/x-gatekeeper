@@ -1,0 +1,11 @@
+name: Pre-release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-pre-release:
+    permissions:
+      contents: write
+    uses: hungp29/x-actions/.github/workflows/pre-release.yaml@v1.0.2
+    secrets: inherit
